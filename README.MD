@@ -2,14 +2,14 @@
 
 <h4 style="color: red;">Just works on linux distributions</h4>
 
-### Step 1
+#### Step 1
 ```
-chmod +X ./makefile.sh
+chmod +X ./script.sh
 ```
 
-### Step 2
+#### Step 2
 ```
-./makefile.sh && cd ./exec
+./script.sh && cd ./exec
 ```
 
 ## Execute first server:
