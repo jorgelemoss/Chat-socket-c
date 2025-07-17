@@ -1,19 +1,35 @@
 #include <stdio.h>
-#include <sys/socket.h>
 #include <stdlib.h>
+#include <string.h>
+#include <unistd.h>
 #include <netinet/in.h>
 #include <arpa/inet.h>
-#include <unistd.h>
-#include <string.h>
-#include "client.h"
+#include <pthread.h>
 
-void start_client() {
+#define BUFFER_SIZE 1024
+
+int sock;
+
+void *receive_messages(void *arg) {
+    char buffer[BUFFER_SIZE];
+    while (1) {
+        memset(buffer, 0, sizeof(buffer));
+        int bytes = recv(sock, buffer, sizeof(buffer) - 1, 0);
+        if (bytes <= 0) {
+            printf("[Client] Disconnected from server.\n");
+            exit(0);
+        }
+        printf("%s", buffer); // <-- Mensagem recebida
+    }
+    return NULL;
+}
+
+int main() {
     struct sockaddr_in serv;
-    int fd;
-    char message[100];
+    char message[BUFFER_SIZE];
 
-    fd = socket(AF_INET, SOCK_STREAM, 0);
-    if(fd < 0) {
+    sock = socket(AF_INET, SOCK_STREAM, 0);
+    if (sock < 0) {
         perror("socket");
         exit(EXIT_FAILURE);
     }
@@ -22,17 +38,23 @@ void start_client() {
     serv.sin_port = htons(8096);
     inet_pton(AF_INET, "127.0.0.1", &serv.sin_addr);
 
-    if(connect(fd, (struct sockaddr *)&serv, sizeof(serv)) < 0) {
+    if (connect(sock, (struct sockaddr *)&serv, sizeof(serv)) < 0) {
         perror("connect");
         exit(EXIT_FAILURE);
     }
 
-     printf("[Client] Connected to server on 127.0.0.1:8096\n");
+    printf("[Client] Connected to server on 127.0.0.1:8096\n");
 
-    while(1) {
-        printf("Enter a message: ");
-        fgets(message, sizeof(message), stdin);
+    pthread_t recv_thread;
+    pthread_create(&recv_thread, NULL, receive_messages, NULL);
+    pthread_detach(recv_thread);
+
+    while (1) {
+        fgets(message, BUFFER_SIZE, stdin);
         message[strcspn(message, "\n")] = 0;
-        send(fd, message, strlen(message), 0);
+        send(sock, message, strlen(message), 0);
     }
+
+    close(sock);
+    return 0;
 }

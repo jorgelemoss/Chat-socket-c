@@ -4,22 +4,17 @@
 
 #### Step 1
 ```
-chmod +X ./script.sh
+chmod +X ./makebuild.sh
 ```
 
 #### Step 2
+###### Exec server
 ```
-./script.sh && cd ./exec
-```
-
-## Execute first server:
-
-```
-./main
+cd build && ./server
 ```
 
-## After, execute client:
-
+#### Step 3
+###### Exec client
 ```
-./client
+cd build && ./client
 ```
