@@ -2,12 +2,12 @@
 
 #### Step 1
 ```
-$ chmod +x makebuild_container
+$ chmod +x docker-utils/makebuild_container.sh
 ```
 
 #### Step 2
 ```
-$ ./makebuild_container
+$ ./docker-utils/makebuild_container.sh
 ```
 
 #### Step 3 (Wait for container up)
@@ -23,17 +23,17 @@ $ cd build && ./client
 
 #### Step 1
 ```
-./makebuild.sh
+$ ./makebuild.sh
 ```
 
 #### Step 2
 ###### Exec server
 ```
-cd build && ./server
+$ cd build && ./server
 ```
 
 #### Step 3
 ###### Exec client (Wait for server)
 ```
-cd build && ./client
+$ cd build && ./client
 ```
