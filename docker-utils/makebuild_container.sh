@@ -31,5 +31,5 @@ echo "👉 Para executar o client, use o comando abaixo:"
 echo ""
 echo "👉 chmod +x ../build/client (Caso seja necessário)"
 echo ""
-echo "  cd .. && cd build && ./client
+echo "  cd .. && ./build/client
 echo ""

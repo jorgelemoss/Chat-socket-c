@@ -12,7 +12,7 @@ $ cd ./docker-utils/ && ./makebuild_container.sh
 
 #### Step 3 (Wait for container up)
 ```
-$ cd .. && cd build && ./client
+$ cd .. && ./build/client
 ```
 
 # Running Without Docker
