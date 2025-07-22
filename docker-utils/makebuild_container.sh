@@ -8,7 +8,7 @@ rm -f build/client
 
 mv client build/
 
-docker build -t chat-socket-image .
+docker build -t chat-socket-image -f ../Dockerfile ..
 if [ $? -eq 0 ]; then
     echo "✅ Imagem 'chat-socket-image' criado com sucesso!"
 else

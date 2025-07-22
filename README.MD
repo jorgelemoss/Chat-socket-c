@@ -23,7 +23,7 @@ $ cd build && ./client
 
 #### Step 1
 ```
-chmod +X ./makeexec.sh
+./makebuild.sh
 ```
 
 #### Step 2
