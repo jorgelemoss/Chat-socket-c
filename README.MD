@@ -7,12 +7,12 @@ $ chmod +x docker-utils/makebuild_container.sh
 
 #### Step 2
 ```
-$ ./docker-utils/makebuild_container.sh
+$ cd ./docker-utils/ && ./makebuild_container.sh 
 ```
 
 #### Step 3 (Wait for container up)
 ```
-$ cd build && ./client
+$ cd .. && cd build && ./client
 ```
 
 # Running Without Docker

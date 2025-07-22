@@ -1,12 +1,12 @@
 #!/bin/bash
 
-gcc ./main/client.c -o client
+gcc ../main/client.c -o client
 
-mkdir -p build
+mkdir -p ../build
 
-rm -f build/client
+rm -f ../build/client
 
-mv client build/
+mv client ../build/
 
 docker build -t chat-socket-image -f ../Dockerfile ..
 if [ $? -eq 0 ]; then
